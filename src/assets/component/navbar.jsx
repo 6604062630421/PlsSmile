@@ -43,11 +43,11 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6 text-[#596269] ">
           {location.pathname === "/" ? (
             <Link to="/" className="hover:text-[#FF7F2C] text-[#FF7F2C]">
-              หน้าหลัก
+              Home
             </Link>
           ) : (
             <Link to="/" className="hover:text-[#FF7F2C]">
-              หน้าหลัก
+              Home
             </Link>
           )}
           {location.pathname === "/mldata" ? (
@@ -79,11 +79,11 @@ const Navbar = () => {
         >
           {location.pathname === "/" ? (
             <Link to="/" className="hover:text-[#7CE9BF] text-[#7CE9BF]">
-              หน้าหลัก
+              Home
             </Link>
           ) : (
             <Link to="/" className="hover:text-[#7CE9BF]">
-              หน้าหลัก
+              Home
             </Link>
           )}
           {location.pathname === "/mldata" ? (
