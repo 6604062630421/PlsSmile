@@ -10,6 +10,7 @@ import Papa from "papaparse";
 import React, { useState, useEffect } from "react";
 import { Link as Scroll } from "react-scroll";
 import Copybox from "../component/copybox";
+import { ArrowUpRight } from "lucide-react";
 const MLdata = () => {
   const [data, setData] = useState([]);
   const datatab = [
@@ -120,6 +121,24 @@ const MLdata = () => {
             analyze the impact of daily habits on academic performance and
             student well-being.
           </p>
+        </div>
+      </div>
+      <div>
+      <h1 className="text-3xl font-semibold text-[#1F2F4D] " id="target">
+          Dataset Referrence
+        </h1>
+        <a href="https://www.kaggle.com/datasets/steve1215rogg/student-lifestyle-dataset "target="_blank">
+              <span
+                className="my-5 mx-5 bg-white text-[#20BEFF] py-2 px-4 w-80 text-center font-[400] border-1 
+                    rounded-lg cursor-pointer shadow-md hover:bg-[#20BEFF] transition-bg ease-in-out duration-200 flex justify-between
+                    hover:text-white transition-text hover:border-[#20BEFF]"
+              >
+                {" "}
+                Kaggle Student lifestyle dataset <ArrowUpRight/>
+              </span>
+            </a>
+        <div>
+            
         </div>
       </div>
       <div className="py-3">
