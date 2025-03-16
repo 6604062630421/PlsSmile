@@ -26,45 +26,45 @@ const Navbar = () => {
         <div className="flex items-center ">
           <h1
             onClick={() => navigate("/")}
-            className="text-xl text-[#FF7E69] font-bold cursor-pointer hover:text-[#7CE9BF] "
+            className="text-xl text-[#19334E] font-bold cursor-pointer hover:text-[#FF7F2C] "
           >
             Pls Smile Mr.John Doe{" "}
           </h1>
         </div>
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-[#FF7E69] focus:outline-none"
+          className="md:hidden text-[#19334E] focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6 text-[#FF7E69] ">
+        <div className="hidden md:flex space-x-6 text-[#596269] ">
           {location.pathname === "/" ? (
-            <Link to="/" className="hover:text-[#7CE9BF] text-[#7CE9BF]">
+            <Link to="/" className="hover:text-[#FF7F2C] text-[#FF7F2C]">
               หน้าหลัก
             </Link>
           ) : (
-            <Link to="/" className="hover:text-[#7CE9BF]">
+            <Link to="/" className="hover:text-[#FF7F2C]">
               หน้าหลัก
             </Link>
           )}
           {location.pathname === "/mldata" ? (
-            <Link to="/mldata" className=" hover:text-[#7CE9BF] text-[#7CE9BF]">
+            <Link to="/mldata" className=" hover:text-[#FF7F2C] text-[#FF7F2C]">
               Machine Learning Dataset
             </Link>
           ) : (
-            <Link to="/mldata" className=" hover:text-[#7CE9BF]">
+            <Link to="/mldata" className=" hover:text-[#FF7F2C]">
               Machine Learning Dataset
             </Link>
           )}
           {location.pathname === "/nndata" ? (
-            <Link to="/nndata" className=" hover:text-[#7CE9BF] text-[#7CE9BF]">
+            <Link to="/nndata" className=" hover:text-[#FF7F2C] text-[#FF7F2C]">
               Neural Network Dataset
             </Link>
           ) : (
-            <Link to="/nndata" className=" hover:text-[#7CE9BF]">
+            <Link to="/nndata" className=" hover:text-[#FF7F2C]">
               Neural Network Dataset
             </Link>
           )}

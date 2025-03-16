@@ -5,6 +5,7 @@ import Home from './assets/page/Home'
 import NNdata from './assets/page/NNdata'
 import MLdata from './assets/page/MLdata'
 import Navbar from './assets/component/Navbar'
+import Footer from './assets/component/Footer'
 function App() {
 
   return (
@@ -13,9 +14,9 @@ function App() {
       <ScrollTop/>
         <Navbar/>
         <Routes>
-          <Route path="/" element={<><Home /></>}/>
-          <Route path="/nndata" element={<><NNdata/></>}/>
-          <Route path="/mldata" element={<><MLdata/></>}/>
+          <Route path="/" element={<><Home /><Footer/></>}/>
+          <Route path="/nndata" element={<><NNdata/><Footer/></>}/>
+          <Route path="/mldata" element={<><MLdata/><Footer/></>}/>
         </Routes>
       </Router>
     </>

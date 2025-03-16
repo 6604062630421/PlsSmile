@@ -1,7 +1,7 @@
 
 const Home = () =>{
     return(
-        <div className="flex flex-col items-center justify-center px-6 py-16 bg-white font-prompt">
+        <div className="flex flex-col items-center justify-center py-16 bg-amber-300 font-prompt pt-25 min-h-[100vh]">
             <h1>Hello</h1>
         </div>
 
