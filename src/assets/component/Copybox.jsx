@@ -13,7 +13,7 @@ const Copybox = ({text,lang}) =>{
               onMouseLeave={() => setHover1(false)}
               className="relative px-5 py-2 rounded-[7px] border-1 border-[#1a1a1a1d] fit"
             >
-                <Syntaxhighlight language='python' style={github}customStyle={{ backgroundColor: '#fff' }}>
+                <Syntaxhighlight language='python' style={github} customStyle={{ backgroundColor: '#fff' }}>
                     {text}
                 </Syntaxhighlight>
               <div

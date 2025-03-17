@@ -137,9 +137,6 @@ const MLdata = () => {
                 Kaggle Student lifestyle dataset <ArrowUpRight/>
               </span>
             </a>
-        <div>
-            
-        </div>
       </div>
       <div className="py-3">
         <h1 className="text-3xl font-semibold text-[#1F2F4D] " id="target">
