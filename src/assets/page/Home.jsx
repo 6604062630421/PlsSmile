@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 const Home = ({setPoke,pokeref}) => {
   const [d1, setD1] = useState(0);
@@ -10,6 +11,8 @@ const Home = ({setPoke,pokeref}) => {
   const result = ['Low','Moderate','High']
   const [responeOnrender,setresponeOnrender] = useState(false);
   const [firstcome,setFisrtcome] = useState(false);
+  const [isdropopen,setdropopen] = useState(false);
+  const [model,setmodel] = useState(0);
   useEffect(()=>{
     if(firstcome){
         setPoke(true);
@@ -53,33 +56,66 @@ const Home = ({setPoke,pokeref}) => {
     // สเกลข้อมูลที่ได้มา
     const scaledData = ipdata.map((item) => item<=0?(0):((item - min) / (max - min)));
     console.log(scaledData);
-    const res = await fetch(
-      "https://modelapi-3-flrg.onrender.com/predict_knn",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          input: scaledData,
-        }),
-      }
-    );
-
-    const data = await res.json();
-    console.log(data);
+    if(model===0){
+      const res = await fetch(
+        "https://modelapi-3-flrg.onrender.com/predict_knn",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            input: scaledData,
+          }),
+        }
+      );
+      const data = await res.json();
+    console.log(model===0?('knn: '):('svm: '),data);
     setjson(data?.prediction[0])
     return { status: res.status, data };
+    }
+    else{
+      const res = await fetch(
+        "https://modelapi-3-flrg.onrender.com/predict_svm",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            input: scaledData,
+          }),
+        }
+        
+      );
+      const data = await res.json();
+    console.log(model===0?('knn: '):('svm: '),data);
+    setjson(data?.prediction[0])
+    return { status: res.status, data };
+    }
+
+    
   };
   return (
     <div className="flex flex-col items-center justify-center py-16 font-prompt pt-25 min-h-[100vh]">
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl px-4 md:px-0  relative">
         {/* Left Section */}
-        <div className="text-center md:text-left max-w-xs mb-0 md:mb-32  h-[100%] flex-col">
+        <div className="text-center md:text-left max-w-xs mb-0 md:mb-32  h-[100%] flex-col min-w-[19vw]">
           <div className="">
             <h1 className="text-xl font-semibold text-[#1F2F4D] " id="target">
               StressLv By Liftstyle
             </h1>
+            <div className="select-none cursor-pointer rounded-[8px] px-4 py-2 border-1 border-[#1a1a1a2d] mt-2 ml-8"
+            onClick={()=>setdropopen(!isdropopen)} >
+              <p className="flex justify-between">{model===0?'K-Nearest Neighbors':'Support Vector Model'} {isdropopen?(<ChevronUp className="ml-4"/>):(<ChevronDown className="ml-4"/>)}</p>
+              {isdropopen && (
+                <div className="
+                flex-col items-center
+                absolute bg-white w-[243px] mt-3 py-4 left-8 shadow-[0px_0px_2px_1px_#1a1a1a1d] rounded-[8px]">
+                  <p onClick={()=>setmodel(0)} className="mb-3 w-full px-5 py-2 hover:bg-[#FF7F2C3d]">K-Nearest Neighbors</p>
+                  <p onClick={()=>setmodel(1)} className="mb-3 w-full px-5 py-2 hover:bg-[#FF7F2C3d]">Support Vector Model</p>
+              </div>)}
+            </div>
           </div>
           <div className="pl-8 pt-4">
             <label className="flex font-medium mb-1 items-end" htmlFor="study">
