@@ -1,10 +1,10 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import React from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { CloudUpload } from "lucide-react";
 const Home = ({ setPoke, pokeref }) => {
   const [d1, setD1] = useState(0);
   const [d2, setD2] = useState(0);
@@ -378,7 +378,7 @@ const Home = ({ setPoke, pokeref }) => {
               component="label"
               role={undefined}
               tabIndex={-1}
-              startIcon={<CloudUploadIcon />}
+              
               sx={{
                 backgroundColor: "white",
                 color: "#FF7F2C",
@@ -387,7 +387,7 @@ const Home = ({ setPoke, pokeref }) => {
                 borderStyle: "solid",
               }}
             >
-              Upload files
+              <CloudUpload className="mr-2"/>Upload files
               <VisuallyHiddenInput
                 type="file"
                 onChange={handleImageChange}
