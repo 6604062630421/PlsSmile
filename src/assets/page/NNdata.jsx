@@ -379,7 +379,7 @@ train_data_augmented = datagen.flow_from_directory(
         <h1 className="text-3xl font-semibold text-[#1F2F4D] ">
           Model Architecture
         </h1>
-        <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4 ml-10" >
+        <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4 ml-10">
           Learning Transfer
         </h1>
         <p className="ml-10">
@@ -458,31 +458,309 @@ model.compile(
         </div>
       </div>
       <div className="py-3 ml-10">
-      <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
+        <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
           Layer Design
         </h1>
+        <div className="flex gap-15">
+          <div className="w-1/2">
+            <Copybox
+              text="from keras import regularizers
+model = keras.models.Sequential()
+model.add(keras.layers.InputLayer(shape=(224, 224, 3)))
+model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D((2, 2)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+# Block 2
+model.add(keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D((2, 2)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+# Block 3
+model.add(keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D((2, 2)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+# Block 4
+model.add(keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D((2, 2)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
+
+# Fully connected layers
+model.add(keras.layers.Flatten())
+model.add(keras.layers.Dense(512, activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.5))
+model.add(keras.layers.Dense(256, activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.5))
+model.add(keras.layers.Dense(15, activation='softmax'))"
+            />
+            
+          </div>
+          <div className="w-1/2">
+            <ul className="list-disc pt-6">
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Input Layer →
+                <p className="text-[#1F2F4D]">
+                  Defines the input shape as (224, 224, 3) for image data.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Convolutional Blocks →
+                <p className="text-[#1F2F4D]">
+                  Consists of four blocks, each containing two Conv2D layers
+                  (ReLU activation), MaxPooling2D, BatchNormalization, and
+                  Dropout.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Fully Connected Layers →
+                <p className="text-[#1F2F4D]">
+                  Flattens the feature maps and passes them through Dense layers
+                  with ReLU activation, L2 regularization, BatchNormalization,
+                  and Dropout.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Output Layer →
+                <p className="text-[#1F2F4D]">
+                  Uses a Dense layer with 15 output neurons and softmax
+                  activation for multi-class classification.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Conv2D →
+                <p className="text-[#1F2F4D]">
+                  Applies 128 convolution filters of size (3,3) with ReLU
+                  activation and 'same' padding to preserve spatial dimensions.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                MaxPooling2D →
+                <p className="text-[#1F2F4D]">
+                  Reduces spatial dimensions by half using a (2,2) pooling
+                  window, retaining essential features while reducing
+                  computation.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                BatchNormalization →
+                <p className="text-[#1F2F4D]">
+                  Normalizes activations to stabilize training, improve
+                  convergence speed, and reduce internal covariate shift.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Dropout →
+                <p className="text-[#1F2F4D]">
+                  Randomly disables 30% of neurons during training to prevent
+                  overfitting and improve generalization.
+                </p>
+              </li>
+              <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+                Kernel Regularization (L2) →
+                <p className="text-[#1F2F4D]">
+                  Applies L2 regularization (λ=0.001) to Conv2D layers to reduce
+                  overfitting by penalizing large weight values.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="flex ml-10 gap-15">
+        <div className="w-1/2"><img src="/assets/paramtab.png" alt="paramtab" className="max-w-[50vh] ml-20"/></div>
+        <div className="w-1/2">
+        <ul className="list-disc pt-6 pl-10">
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+            Total params →
+              <p className="text-[#1F2F4D]">
+              27,003,055 (103.01 MB)
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+            Trainable params →
+              <p className="text-[#1F2F4D]">
+              27,000,559 (103.00 MB)
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+            Non-trainable paramss →
+              <p className="text-[#1F2F4D]">
+              2,496 (9.75 KB)
+              </p>
+            </li>
+            </ul></div>
       </div>
       <div className="py-3 ml-10">
-      <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
+        <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
           Model fit and Hyperparameters setting
         </h1>
         <ul className="list-disc pt-6 ml-10">
-              <li className="text-[18px] font-medium gap-2 text-[#FF7F2C]">
-                Call back
-              </li>
-              <p>asd</p>
-              <Copybox text="callbacks = [
+          <li className="text-[18px] font-medium gap-2 text-[#FF7F2C]">
+            Model Complier
+          </li>
+          <Copybox
+            text="optimizer = keras.optimizers.Adam(learning_rate=0.0001)
+model.compile(optimizer=optimizer, 
+loss='categorical_crossentropy', 
+metrics=['accuracy'])"
+          />
+          <ul className="list-disc pt-6 pl-10">
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Adam Optimizer →
+              <p className="text-[#1F2F4D]">
+                Uses the Adam optimization algorithm with a learning rate of
+                0.0001 for efficient weight updates.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Loss Function →
+              <p className="text-[#1F2F4D]">
+                Categorical Crossentropy is used as the loss function, suitable
+                for multi-class classification tasks.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Metrics →
+              <p className="text-[#1F2F4D]">
+                Tracks accuracy during training to evaluate model performance.
+              </p>
+            </li>
+          </ul>
+          <li className="text-[18px] font-medium gap-2 text-[#FF7F2C]">
+            Call back
+          </li>
+          <p>
+            A callback in Keras is a function that runs during training to
+            monitor and control the process, such as stopping early, adjusting
+            learning rates, or saving the model.
+          </p>
+          <Copybox
+            text="callbacks = [
     keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True),
     keras.callbacks.ReduceLROnPlateau(factor=0.1, patience=5, min_lr=1e-6),
     keras.callbacks.ModelCheckpoint('best_model.h5', save_best_only=True)
-]"/>
-            </ul>
+]"
+          />
+
+          <ul className="list-disc pt-6 pl-10">
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              EarlyStopping →
+              <p className="text-[#1F2F4D]">
+                Stops training if validation loss doesn't improve for 10 epochs,
+                restoring the best weights.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              ReduceLROnPlateau →
+              <p className="text-[#1F2F4D]">
+                Reduces learning rate by a factor of 0.1 if validation loss
+                stagnates for 5 epochs, with a minimum learning rate of 1e-6.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              ModelCheckpoint →
+              <p className="text-[#1F2F4D]">
+                Saves the model as 'best_model.h5' whenever validation
+                performance improves.
+              </p>
+            </li>
+          </ul>
+          <li className="text-[18px] font-medium gap-2 text-[#FF7F2C]">
+            Model fit
+          </li>
+          <Copybox text="history = model.fit(train_data_augmented,epochs=100,batch_size=64, validation_data=val_data ,callbacks=[callbacks])" />
+          <ul className="list-disc pt-6">
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Training Process →
+              <p className="text-[#1F2F4D]">
+                Trains the model using the augmented training data for 100
+                epochs with a batch size of 64.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Validation Data →
+              <p className="text-[#1F2F4D]">
+                Evaluates model performance on validation data during training.
+              </p>
+            </li>
+            <li className="text-[13px] font-medium gap-2 text-[#FF7F2C]">
+              Callbacks →
+              <p className="text-[#1F2F4D]">
+                Uses predefined callbacks to monitor training, adjust learning
+                rate, and save the best model. As mentioned above
+              </p>
+            </li>
+          </ul>
+          <img
+            src="/assets/exampletrain.png"
+            alt="exampletrain"
+            className="rounded-[5px] mt-3"
+          />
+        </ul>
       </div>
       <div className="py-3 ml-10">
-      <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
+        <h1 className="text-2xl font-semibold text-[#3E4450ad]  pt-4">
           Model Evaluate
-        </h1>
+        </h1> 
+        Confusion Matrix (at 50 epcoh)
+        <Copybox text='import seaborn as sns
+from sklearn.metrics import confusion_matrix, classification_report
+
+# Predict on validation data
+y_true = np.concatenate([y for x, y in val_data], axis=0)
+y_pred_probs = model.predict(val_data)
+y_pred = np.argmax(y_pred_probs, axis=1)
+
+# Compute confusion matrix
+conf_matrix = confusion_matrix(y_true.argmax(axis=1), y_pred)
+
+# Plot confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels= class_names, yticklabels= class_names)
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.title("Confusion Matrix")
+plt.show()'/>
+<img src="/assets/nnmatrix.png" alt="" />
+Accurate & Loss Graph (at 50 epcoh)
+<Copybox text="# Print classification report
+print(classification_report(y_true.argmax(axis=1), y_pred, target_names=class_names))
+
+plt.figure(figsize=(12, 5))
+
+# Accuracy plot
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Train Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.title('Training vs Validation Accuracy')
+plt.legend()
+
+# Loss plot
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.title('Training vs Validation Loss')
+plt.legend()
+
+plt.show()"/>
+<img src="/assets/nngraph.png" alt="" />
       </div>
+      
     </div>
   );
 };
