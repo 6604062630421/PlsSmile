@@ -90,7 +90,7 @@ const Home = ({ setPoke, pokeref }) => {
       };
 
       try {
-        const response = await fetch("http://127.0.0.1:5000/predict_nn", {
+        const response = await fetch("http://modelapi-3-flrg.onrender.com/predict_nn", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // บอกว่าเราส่งข้อมูลในรูปแบบ JSON
